@@ -1,6 +1,6 @@
 const WelcomeNavbar = () => {
   return (
-    <nav className=" w-full px-16 py-10">
+    <nav className=" w-full px-8 py-10">
       <div className="flex flex-row w-full gap-16">
         <div className="">
           <img src="/mcdonalds-logo.png" alt="" className="w-20 h-20" />

@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import LayoutMain from "./pages/LayoutMain";
 import LayoutPay from "./pages/LayoutPay";
+import PayPage from "./pages/PayPage";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
           <Route path="/" element={<Home />} />
         </Route>
         <Route element={<LayoutPay />}>
-          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/pay" element={<PayPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
