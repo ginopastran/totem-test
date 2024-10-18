@@ -1,11 +1,17 @@
 import { ChevronRight, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import useCart from "@/hooks/use-cart"; // Importamos el hook useCart
 
 const PayNav = () => {
   const navigate = useNavigate();
+  const { items } = useCart(); // Obtenemos los items del carrito
+
+  // Calculamos el número total de artículos y el precio total
+  const totalItems = items.length;
+  const totalPrice = items.reduce((total, item) => total + item.price, 0);
 
   const handlePayClick = () => {
-    navigate("/pay");
+    navigate("/pay"); // Navegamos a la ruta del carrito o pago
   };
 
   return (
@@ -25,12 +31,16 @@ const PayNav = () => {
               <div className="relative">
                 <ShoppingBag className="w-10 h-10" />
                 <div className="absolute bg-red-700 rounded-full h-6 w-6 -top-2 -right-2 flex items-center justify-center">
-                  <span className="font-rubik text-white text-sm">2</span>
+                  <span className="font-rubik text-white text-sm">
+                    {totalItems}
+                  </span>
                 </div>
               </div>
               <div className="flex flex-col">
                 <p className="font-rubik text-xl">Tu orden:</p>
-                <span className="font-rubik font-bold text-xl">7,90$</span>
+                <span className="font-rubik font-bold text-xl">
+                  ${totalPrice.toFixed(2)}
+                </span>
               </div>
             </div>
           </div>

@@ -1,5 +1,4 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CirclePercent, Home } from "lucide-react";
 
 interface LeftSideProps {
   selectedTab: string;

@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "Magical-Night";
-  src: url("./assets/fonts/Magical-Night.ttf") format("truetype");
+  src: url("./assets/fonts/Magical-Night.otf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -80,4 +80,11 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", "sans-serif";
 }

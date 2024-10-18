@@ -1,6 +1,8 @@
-import React from "react";
+interface MenuPrincipalProps {
+  onTabChange: (tab: string) => void;
+}
 
-const MenuPrincipal = () => {
+const MenuPrincipal: React.FC<MenuPrincipalProps> = ({ onTabChange }) => {
   return (
     <div className="   w-full h-full flex flex-col">
       <div className="flex flex-col rounded-2xl bg-black w-full text-white shadow-lg items-center">
@@ -34,21 +36,33 @@ const MenuPrincipal = () => {
         </div>
       </div>
       <div className="grid grid-cols-2 grid-rows-2 font-rubik mt-4 gap-4">
-        <div className="flex bg-white rounded-2xl items-center px-4 py-4 shadow-lg gap-2 justify-between">
-          <h3 className=" font-bold text-lg">Menús</h3>
-          <img src="/hamburguesa-1.png" alt="" className="w-[5.5rem]" />
+        <div
+          className="flex bg-white rounded-2xl items-center px-4 py-4 shadow-lg gap-2 justify-between cursor-pointer"
+          onClick={() => onTabChange("menus")}
+        >
+          <h3 className="font-bold text-lg">Menús</h3>
+          <img src="/hamburguesa-1.png" alt="Menús" className="w-[5.5rem]" />
         </div>
-        <div className="flex bg-white rounded-2xl items-center px-4 py-4 shadow-lg gap-2 justify-between">
-          <h3 className=" font-bold text-lg">Delicias y salsas</h3>
-          <img src="/papas-1.png" alt="" className="w-16" />
+        <div
+          className="flex bg-white rounded-2xl items-center px-4 py-4 shadow-lg gap-2 justify-between cursor-pointer"
+          onClick={() => onTabChange("sauce")}
+        >
+          <h3 className="font-bold text-lg">Delicias y salsas</h3>
+          <img src="/papas-1.png" alt="Delicias y salsas" className="w-16" />
         </div>
-        <div className="flex bg-white rounded-2xl items-center px-4 py-4 shadow-lg gap-2 justify-between">
-          <h3 className=" font-bold text-lg">Cajita feliz</h3>
-          <img src="/caja-1.png" alt="" className="w-[5rem]" />
+        <div
+          className="flex bg-white rounded-2xl items-center px-4 py-4 shadow-lg gap-2 justify-between cursor-pointer"
+          onClick={() => onTabChange("happy")}
+        >
+          <h3 className="font-bold text-lg">Cajita feliz</h3>
+          <img src="/caja-1.png" alt="Cajita feliz" className="w-[5rem]" />
         </div>
-        <div className="flex bg-white rounded-2xl items-center px-4 py-4 shadow-lg gap-2 justify-between">
-          <h3 className=" font-bold text-lg">Helados</h3>
-          <img src="/helado-1.png" alt="" className=" w-[5rem]" />
+        <div
+          className="flex bg-white rounded-2xl items-center px-4 py-4 shadow-lg gap-2 justify-between cursor-pointer"
+          onClick={() => onTabChange("icecream")}
+        >
+          <h3 className="font-bold text-lg">Helados</h3>
+          <img src="/helado-1.png" alt="Helados" className="w-[5rem]" />
         </div>
       </div>
     </div>
