@@ -53,7 +53,7 @@ const PayPage = () => {
         ) : (
           <div className="flex flex-col gap-4">
             {/* Lista de productos en el carrito */}
-            <ul className="divide-y divide-gray-200">
+            <ul className="flex flex-col gap-4">
               {items.map((item) => (
                 <li
                   key={item.id}
