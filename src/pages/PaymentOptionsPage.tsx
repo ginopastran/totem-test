@@ -2,10 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { ChevronLeft, CircleAlert, X } from "lucide-react";
 import useCart from "@/hooks/use-cart";
 import { toast } from "react-hot-toast";
+import { io } from "socket.io-client";
+import { useState } from "react";
+import socket from "@/lib/socket";
 
 type PaymentOption = "totem" | "mostrador";
 
 const PaymentOptionsPage = () => {
+  const [nextNumber, setNextNumber] = useState(1);
   const navigate = useNavigate();
   const { items, removeAll } = useCart();
 
@@ -23,7 +27,11 @@ const PaymentOptionsPage = () => {
     if (option === "totem") {
       navigate("/payment/totem");
     } else if (option === "mostrador") {
-      navigate("/payment/mostrador");
+      const siguienteNumero = `A${nextNumber}`;
+      socket.emit("nuevaOrden", siguienteNumero);
+      setNextNumber((prev) => prev + 1);
+      console.log("socket", socket);
+      // navigate("/payment/mostrador");
     }
   };
 

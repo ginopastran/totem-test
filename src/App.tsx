@@ -5,6 +5,8 @@ import LayoutPay from "./pages/LayoutPay";
 import PayPage from "./pages/PayPage";
 import PaymentOptionsPage from "./pages/PaymentOptionsPage"; // Importamos el nuevo componente
 import { Toaster } from "react-hot-toast";
+import Box from "./pages/Box";
+import Visor from "./pages/Visor";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           {/* <Route path="/payment/totem" element={<TotemPayment />} /> */}
           {/* <Route path="/payment/mostrador" element={<CounterPayment />} /> */}
         </Route>
+        <Route path="/box" element={<Box />} />
+        <Route path="/visor" element={<Visor />} />
       </Routes>
     </BrowserRouter>
   );
