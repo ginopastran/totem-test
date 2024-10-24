@@ -14,7 +14,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="bg-white flex flex-col text-black items-center rounded-2xl py-4 gap-3 px-2 cursor-pointer justify-between">
+        <div className="bg-white flex flex-col text-black items-center rounded-2xl py-4 gap-3 px-2 cursor-pointer justify-between max-h-[18rem]">
           <img src={item.imageUrl} alt={item.name} className="w-36" />
           <div className="flex flex-col px-2 gap-3">
             <h3 className="font-bold text-lg leading-5">{item.name}</h3>

@@ -25,27 +25,27 @@ const LeftSide: React.FC<LeftSideProps> = ({ selectedTab, onTabChange }) => {
           Hamburguesas y menus
         </TabsTrigger>
         <TabsTrigger value="sauce" className="gap-4">
-          <img src="/papas-1.png" alt="" className="w-12 " />
+          <img src="/papas-icon.png" alt="" className="w-12 " />
           Delicias y salsas
         </TabsTrigger>
         <TabsTrigger value="happy" className="gap-2">
-          <img src="/burger-1.png" alt="" className="w-14 " />
+          <img src="/cajita-feliz.png" alt="" className="w-14 " />
           Cajita feliz
         </TabsTrigger>
         <TabsTrigger value="soda" className="gap-2">
-          <img src="/burger-1.png" alt="" className="w-14" />
+          <img src="/bebidas.png" alt="" className="w-14" />
           Bebidas
         </TabsTrigger>
         <TabsTrigger value="salad" className="gap-2">
-          <img src="/burger-1.png" alt="" className="w-14 " />
+          <img src="/ensaladas.png" alt="" className="w-14 " />
           Ensaladas
         </TabsTrigger>
         <TabsTrigger value="icecream" className="gap-2">
-          <img src="/burger-1.png" alt="" className="w-14 " />
+          <img src="/helado.png" alt="" className="w-14 " />
           Helados y postres
         </TabsTrigger>
         <TabsTrigger value="coffee" className="gap-2">
-          <img src="/burger-1.png" alt="" className="w-14 " />
+          <img src="/mccafe.png" alt="" className="w-14 " />
           McCafé
         </TabsTrigger>
 

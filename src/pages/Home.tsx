@@ -2,13 +2,12 @@ import { useState } from "react";
 import LeftSide from "@/components/LeftSide";
 import MenuPrincipal from "@/components/MenuPrincipal";
 import Novedades from "@/components/Novedades";
-// Importa los demás componentes según sea necesario
 
 const Home = () => {
   const [selectedTab, setSelectedTab] = useState("menu");
 
   return (
-    <div className="flex h-[70vh]">
+    <div className="flex">
       <LeftSide selectedTab={selectedTab} onTabChange={setSelectedTab} />
       <div className="flex p-4 pt-8 w-full">
         {selectedTab === "menu" && (
