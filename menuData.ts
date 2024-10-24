@@ -15,7 +15,7 @@ export const beefBurgers: MenuItem[] = [
     description:
       "Dos jugosas carnes de res, salsa especial, lechuga crujiente, queso americano, pepinillos y cebolla en pan con semillas de sésamo.",
     price: 5.99,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/burgers/carne/doble-con-queso.png",
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const beefBurgers: MenuItem[] = [
     description:
       "Carne de res de 113 gramos, queso derretido, cebolla fresca, pepinillos y mostaza en pan clásico.",
     price: 6.49,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/burgers/carne/cuarto-de-libra.png",
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ export const beefBurgers: MenuItem[] = [
     description:
       "Dos carnes de res sazonadas, queso derretido, pepinillos, cebolla picada, ketchup y mostaza.",
     price: 4.99,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/burgers/carne/doble-con-queso.png",
   },
   {
     id: 4,
@@ -39,15 +39,15 @@ export const beefBurgers: MenuItem[] = [
     description:
       "Dos carnes de res, una rebanada de queso, pepinillos, cebolla, ketchup y mostaza.",
     price: 3.99,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/burgers/carne/cuarto-de-libra.png",
   },
   {
     id: 5,
-    name: "Hamburguesa",
+    name: "Hamburguesa Simple",
     description:
       "Carne de res sazonada, pepinillos, cebolla picada, ketchup y mostaza en pan suave.",
     price: 2.49,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/burgers/carne/simple.png",
   },
 ];
 
@@ -58,7 +58,7 @@ export const chickenBurgers: MenuItem[] = [
     description:
       "Filete de pollo empanizado, lechuga fresca y mayonesa en pan tostado.",
     price: 4.49,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/burgers/pollo/mcchicken.png",
   },
   {
     id: 7,
@@ -66,7 +66,7 @@ export const chickenBurgers: MenuItem[] = [
     description:
       "Pollo crujiente, lechuga fresca y mayonesa en pan brioche tostado.",
     price: 5.49,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/burgers/pollo/mccrispy.png",
   },
   {
     id: 8,
@@ -74,23 +74,16 @@ export const chickenBurgers: MenuItem[] = [
     description:
       "Tiernos trozos de pollo empanizados y fritos hasta quedar dorados.",
     price: 5.99,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/burgers/pollo/mcnuggets.png",
   },
-  {
-    id: 9,
-    name: "Filet-O-Fish",
-    description:
-      "Filete de pescado, queso americano y salsa tártara en pan al vapor.",
-    price: 4.99,
-    imageUrl: "/hamburguesa-1.png",
-  },
+
   {
     id: 10,
     name: "Chicken Deluxe",
     description:
       "Pechuga de pollo empanizada, tomate, lechuga y mayonesa en pan artesanal.",
     price: 6.49,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/burgers/pollo/chickendeluxe.png",
   },
 ];
 
@@ -100,21 +93,21 @@ export const fries: MenuItem[] = [
     name: "Papas Fritas Pequeñas",
     description: "Clásicas papas fritas doradas y crujientes.",
     price: 1.99,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/papas.png",
   },
   {
     id: 12,
     name: "Papas Fritas Medianas",
     description: "Papas fritas doradas y crujientes en tamaño mediano.",
     price: 2.49,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/papas.png",
   },
   {
     id: 13,
     name: "Papas Fritas Grandes",
     description: "Nuestra porción más grande de papas fritas crujientes.",
     price: 2.99,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/papas.png",
   },
   {
     id: 14,
@@ -131,49 +124,29 @@ export const drinks: MenuItem[] = [
     name: "Coca-Cola",
     description: "Refresco clásico disponible en diferentes tamaños.",
     price: 1.49,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/bebidas/coca.png",
   },
   {
     id: 16,
     name: "Fanta Naranja",
     description: "Refresco sabor naranja, dulce y burbujeante.",
     price: 1.49,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/bebidas/fanta.png",
   },
   {
     id: 17,
     name: "Sprite",
     description: "Refresco limón-lima refrescante.",
     price: 1.49,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/bebidas/sprite.png",
   },
-  {
-    id: 18,
-    name: "Agua Mineral",
-    description: "Agua con gas para una opción refrescante.",
-    price: 1.29,
-    imageUrl: "/hamburguesa-1.png",
-  },
+
   {
     id: 19,
     name: "Café Premium Roast",
     description: "Café caliente recién hecho, 100% arábica.",
     price: 1.99,
-    imageUrl: "/hamburguesa-1.png",
-  },
-  {
-    id: 20,
-    name: "Batido de Fresa",
-    description: "Batido cremoso sabor fresa, coronado con crema batida.",
-    price: 2.99,
-    imageUrl: "/hamburguesa-1.png",
-  },
-  {
-    id: 21,
-    name: "Jugo de Naranja",
-    description: "Jugo de naranja 100% natural, sin azúcar añadida.",
-    price: 2.49,
-    imageUrl: "/hamburguesa-1.png",
+    imageUrl: "/mccafe1.png",
   },
 ];
 

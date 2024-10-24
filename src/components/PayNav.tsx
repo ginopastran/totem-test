@@ -1,17 +1,20 @@
 import { ChevronRight, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import useCart from "@/hooks/use-cart"; // Importamos el hook useCart
+import useCart from "@/hooks/use-cart";
 
 const PayNav = () => {
   const navigate = useNavigate();
-  const { items } = useCart(); // Obtenemos los items del carrito
+  const { items } = useCart();
 
-  // Calculamos el número total de artículos y el precio total
-  const totalItems = items.length;
-  const totalPrice = items.reduce((total, item) => total + item.price, 0);
+  // Calculamos el número total de artículos y el precio total considerando las cantidades
+  const totalItems = items.reduce((total, item) => total + item.quantity, 0);
+  const totalPrice = items.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   const handlePayClick = () => {
-    navigate("/pay"); // Navegamos a la ruta del carrito o pago
+    navigate("/pay");
   };
 
   return (

@@ -1,38 +1,28 @@
+import { menuData } from "../../menuData";
+import ProductCard from "./ProductCard";
+
 interface MenuPrincipalProps {
   onTabChange: (tab: string) => void;
 }
 
+// Seleccionamos 3 hamburguesas de la data
+const burger1 = menuData.beefBurgers[1];
+const burger2 = menuData.beefBurgers[2];
+const burger3 = menuData.beefBurgers[4];
+
 const MenuPrincipal: React.FC<MenuPrincipalProps> = ({ onTabChange }) => {
   return (
-    <div className="   w-full h-full flex flex-col">
+    <div className="w-full h-full flex flex-col">
       <div className="flex flex-col rounded-2xl bg-black w-full text-white shadow-lg items-center">
         <img
           src="/hamburguesas.jpg"
-          alt=""
-          className=" rounded-tr-2xl rounded-tl-2xl"
+          alt="Hamburguesas"
+          className="rounded-tr-2xl rounded-tl-2xl"
         />
         <div className="flex py-4 px-4 font-rubik gap-3 justify-between">
-          <div className=" bg-white flex flex-col text-black items-center rounded-2xl py-4 gap-3 px-2">
-            <img src="/hamburguesa-1.png" alt="" className=" w-36" />
-            <div className="flex flex-col px-2 gap-3">
-              <h3 className=" font-bold text-lg leading-5">Grand Tasty</h3>
-              <span className=" font-medium">30$</span>
-            </div>
-          </div>
-          <div className=" bg-white flex flex-col text-black items-center rounded-2xl py-4 gap-3 px-2">
-            <img src="/hamburguesa-1.png" alt="" className=" w-36" />
-            <div className="flex flex-col px-2 gap-3">
-              <h3 className=" font-bold text-lg leading-5">Grand Tasty</h3>
-              <span className=" font-medium">30$</span>
-            </div>
-          </div>
-          <div className=" bg-white flex flex-col text-black items-center rounded-2xl py-4 gap-3 px-2">
-            <img src="/hamburguesa-1.png" alt="" className=" w-36" />
-            <div className="flex flex-col px-2 gap-3">
-              <h3 className=" font-bold text-lg leading-5">Grand Tasty</h3>
-              <span className=" font-medium">30$</span>
-            </div>
-          </div>
+          <ProductCard item={burger1} />
+          <ProductCard item={burger2} />
+          <ProductCard item={burger3} />
         </div>
       </div>
       <div className="grid grid-cols-2 grid-rows-2 font-rubik mt-4 gap-4">
