@@ -1,13 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import useCart from "@/hooks/use-cart";
-import { X } from "lucide-react";
+import { ChevronLeft, CircleAlert, X } from "lucide-react";
 import { toast } from "react-hot-toast";
 
 const PayPage = () => {
   const navigate = useNavigate();
-  const { items, removeItem, removeAll } = useCart();
+  const { items, addItem, removeItem, removeAll } = useCart();
 
-  const totalPrice = items.reduce((total, item) => total + item.price, 0);
+  const totalPrice = items.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   const handleGoToPaymentOptions = () => {
     if (items.length === 0) {
@@ -22,6 +25,10 @@ const PayPage = () => {
     navigate("/");
   };
 
+  const handleBack = () => {
+    navigate("/");
+  };
+
   return (
     <div className="w-full px-8 py-10 pt-20 flex flex-col items-center justify-center">
       <img
@@ -29,9 +36,15 @@ const PayPage = () => {
         alt="Logo de McDonald's"
         className="w-28 h-28"
       />
-      <h1 className="font-magical text-5xl text-stone-800 max-w-xl mt-10 text-center">
-        Tu Orden
-      </h1>
+      <div className="flex text-center mt-10 w-full justify-between items-center">
+        <ChevronLeft className="w-12 h-12" onClick={handleBack} />
+        <div>
+          <h1 className="font-magical text-5xl text-stone-800 max-w-xl">
+            Tu orden
+          </h1>
+        </div>
+        <CircleAlert className="w-12 h-12 text-transparent" />
+      </div>
 
       {/* Resumen de la orden */}
       <div className="w-full max-w-3xl mt-10">
@@ -53,14 +66,28 @@ const PayPage = () => {
                   />
                   <div className="ml-4 flex-1">
                     <h3 className="text-lg font-bold">{item.name}</h3>
-                    <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                    <p className="text-gray-600">
+                      ${item.price.toFixed(2)} x {item.quantity}
+                    </p>
+                    <p className="text-gray-800 font-semibold">
+                      Subtotal: ${(item.price * item.quantity).toFixed(2)}
+                    </p>
                   </div>
-                  <button
-                    className="text-red-500 hover:text-red-700"
-                    onClick={() => removeItem(item.id)}
-                  >
-                    <X className="w-10 h-10" />
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      className="px-2 py-1 bg-gray-200 rounded"
+                      onClick={() => removeItem(item.id)}
+                    >
+                      -
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button
+                      className="px-2 py-1 bg-gray-200 rounded"
+                      onClick={() => addItem(item)}
+                    >
+                      +
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
