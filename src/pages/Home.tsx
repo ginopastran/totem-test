@@ -2,6 +2,13 @@ import { useState } from "react";
 import LeftSide from "@/components/LeftSide";
 import MenuPrincipal from "@/components/MenuPrincipal";
 import Novedades from "@/components/Novedades";
+import Hamburguesas from "@/components/Hamburguesas";
+import DeliciasSalsas from "@/components/DeliciasSalsas";
+import Cajitas from "@/components/Cajitas";
+import Bebidas from "@/components/Bebidas";
+import Ensaladas from "@/components/Ensaladas";
+import Helados from "@/components/Helados";
+import Cafes from "@/components/Cafes";
 
 const Home = () => {
   const [selectedTab, setSelectedTab] = useState("menu");
@@ -14,10 +21,13 @@ const Home = () => {
           <MenuPrincipal onTabChange={setSelectedTab} />
         )}
         {selectedTab === "promotions" && <Novedades />}
-        {selectedTab === "menus" && <Novedades />}
-        {selectedTab === "sauce" && <Novedades />}
-        {selectedTab === "happy" && <Novedades />}
-        {selectedTab === "icecream" && <Novedades />}
+        {selectedTab === "menus" && <Hamburguesas />}
+        {selectedTab === "sauce" && <DeliciasSalsas />}
+        {selectedTab === "happy" && <Cajitas />}
+        {selectedTab === "soda" && <Bebidas />}
+        {selectedTab === "salad" && <Ensaladas />}
+        {selectedTab === "icecream" && <Helados />}
+        {selectedTab === "coffee" && <Cafes />}
         {/* Agrega los demás componentes según sea necesario */}
       </div>
     </div>

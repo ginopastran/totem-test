@@ -109,13 +109,13 @@ export const fries: MenuItem[] = [
     price: 2.99,
     imageUrl: "/papas.png",
   },
-  {
-    id: 14,
-    name: "Papas Deluxe",
-    description: "Papas cortadas en gajos sazonadas con especias.",
-    price: 3.49,
-    imageUrl: "/hamburguesa-1.png",
-  },
+  // {
+  //   id: 14,
+  //   name: "Papas Deluxe",
+  //   description: "Papas cortadas en gajos sazonadas con especias.",
+  //   price: 3.49,
+  //   imageUrl: "/hamburguesa-1.png",
+  // },
 ];
 
 export const drinks: MenuItem[] = [
@@ -140,9 +140,74 @@ export const drinks: MenuItem[] = [
     price: 1.49,
     imageUrl: "/bebidas/sprite.png",
   },
+];
 
+export const boxes: MenuItem[] = [
   {
-    id: 19,
+    id: 20,
+    name: "Cajita feliz grande",
+    description:
+      "Nuestra Cajita Feliz en tamaño grande con más de tus favoritos.",
+    price: 2.99,
+    imageUrl: "/cajitas/cajita-feliz-grande.png",
+  },
+  {
+    id: 21,
+    name: "Cajita feliz Opt 2",
+    description:
+      "Una opción alternativa de Cajita Feliz con deliciosas selecciones.",
+    price: 2.99,
+    imageUrl: "/cajitas/cajita-feliz-op-2.png",
+  },
+  {
+    id: 22,
+    name: "Cajita feliz juguete",
+    description: "Incluye un juguete especial junto con una deliciosa comida.",
+    price: 3.99,
+    imageUrl: "/cajitas/cajita-feliz-mas-juguete.png",
+  },
+];
+
+export const salads: MenuItem[] = [
+  {
+    id: 23,
+    name: "Ensalada de lechuga",
+    description:
+      "Fresca ensalada de lechuga crujiente para una opción ligera y saludable.",
+    price: 2.99,
+    imageUrl: "/ensaladas/lechuga.png",
+  },
+  {
+    id: 24,
+    name: "Ensalada de tomate",
+    description:
+      "Deliciosa ensalada de tomates jugosos, ideal como acompañamiento.",
+    price: 2.99,
+    imageUrl: "/ensaladas/tomate.png",
+  },
+];
+
+export const icecreams: MenuItem[] = [
+  {
+    id: 25,
+    name: "Sundae",
+    description:
+      "Delicioso helado Sundae con cobertura de chocolate o caramelo.",
+    price: 2.99,
+    imageUrl: "/helados/helado.png",
+  },
+  {
+    id: 26,
+    name: "McFlurry",
+    description: "Cremoso McFlurry mezclado con tus dulces favoritos.",
+    price: 2.99,
+    imageUrl: "/helados/mcflurry.png",
+  },
+];
+
+export const coffee: MenuItem[] = [
+  {
+    id: 27,
     name: "Café Premium Roast",
     description: "Café caliente recién hecho, 100% arábica.",
     price: 1.99,
@@ -155,4 +220,8 @@ export const menuData = {
   chickenBurgers,
   fries,
   drinks,
+  boxes,
+  salads,
+  icecreams,
+  coffee,
 };
