@@ -1,9 +1,10 @@
 import socket from "@/lib/socket";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Box = () => {
   const [listaOrdenes, setListaOrdenes] = useState([]);
   const [listaOrdenesParaRetirar, setListaOrdenesParaRetirar] = useState([]);
+  const pedidosSonados = useRef(new Set());
 
   useEffect(() => {
     // Escuchar la lista actualizada de órdenes en preparación
@@ -16,23 +17,36 @@ const Box = () => {
       setListaOrdenesParaRetirar(ordenesParaRetirar);
     });
 
+    socket.on("reiniciarPedidosSonados", () => {
+      pedidosSonados.current.clear();
+    });
+
     // Cleanup para evitar múltiples listeners
     return () => {
       socket.off("nuevaListaOrdenes");
-      socket.off("nuevaListaOrdenesPendientesDeCobro");
       socket.off("nuevaListaOrdenesParaRetirar");
+      socket.off("reiniciarPedidosSonados");
     };
   }, []);
 
-  // Mover orden de "en preparación" a "para retirar"
-  const handlePrepararOrden = (numeroOrden) => {
-    socket.emit("moverAParaRetirar", numeroOrden);
-  };
+  useEffect(() => {
+    // Filtrar los pedidos para los que aún no ha sonado el audio
 
-  // Eliminar orden de "para retirar"
-  const handleRetirarOrden = (numeroOrden) => {
-    socket.emit("eliminarOrden", numeroOrden);
-  };
+    const nuevosPedidos = listaOrdenesParaRetirar.filter(
+      (pedido) => !pedidosSonados.current.has(pedido)
+    );
+
+    nuevosPedidos.forEach((pedido) => {
+      const audioFilePath = `/voces/${pedido}.mp3`;
+      const audio = new Audio(audioFilePath);
+
+      // Reproducir el audio y marcar el pedido como sonado
+      audio
+        .play()
+        .then(() => pedidosSonados.current.add(pedido)) // Agregar el pedido al Set solo después de que el audio se reproduzca
+        .catch((error) => console.log("Error al reproducir el audio:", error));
+    });
+  }, [listaOrdenesParaRetirar]);
 
   return (
     <div className="flex flex-col  gap-12">

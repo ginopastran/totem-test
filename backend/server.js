@@ -36,7 +36,11 @@ io.on("connection", (socket) => {
   // Evento para crear una nueva orden pendiente de cobro
   socket.on("nuevaOrdenACobrar", () => {
     const nuevoNumeroOrden = `A${numeroActual}`;
-    numeroActual += 1; // Incrementar el número de orden
+    numeroActual = numeroActual < 5 ? numeroActual + 1 : 1; // Incrementar el número de orden
+
+    if (numeroActual === 1) {
+      io.emit("reiniciarPedidosSonados"); // Notificar al frontend para limpiar pedidos sonados
+    }
 
     ordenesPendientesDeCobro.push(nuevoNumeroOrden); // Añadir a la lista de pendientes de cobro
     io.emit("nuevaListaOrdenesPendientesDeCobro", ordenesPendientesDeCobro); // Emitir lista actualizada
@@ -49,7 +53,11 @@ io.on("connection", (socket) => {
   // Evento para crear una nueva orden directamente en preparación
   socket.on("ordenCobrada", () => {
     const nuevoNumeroOrden = `A${numeroActual}`;
-    numeroActual += 1; // Incrementar el número de orden
+    numeroActual = numeroActual < 5 ? numeroActual + 1 : 1; // Incrementar el número de orden
+
+    if (numeroActual === 1) {
+      io.emit("reiniciarPedidosSonados"); // Notificar al frontend para limpiar pedidos sonados
+    }
 
     ordenes.push(nuevoNumeroOrden); // Añadir a la lista de "en preparación"
     io.emit("nuevaListaOrdenes", ordenes); // Emitir lista actualizada
