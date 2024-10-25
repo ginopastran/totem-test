@@ -6,10 +6,9 @@ import { io } from "socket.io-client";
 import { useState } from "react";
 import socket from "@/lib/socket";
 
-type PaymentOption = "totem" | "mostrador";
+// type PaymentOption = "totem" | "mostrador";
 
 const PaymentOptionsPage = () => {
-  const [nextNumber, setNextNumber] = useState(1);
   const navigate = useNavigate();
   const { items, removeAll } = useCart();
 
@@ -18,21 +17,13 @@ const PaymentOptionsPage = () => {
     navigate("/");
   };
 
-  const handlePaymentOption = (option: PaymentOption) => {
+  const handlePaymentOption = (path) => {
     if (items.length === 0) {
       toast.error("Tu carrito está vacío.");
       return;
     }
 
-    if (option === "totem") {
-      navigate("/payment/totem");
-    } else if (option === "mostrador") {
-      const siguienteNumero = `A${nextNumber}`;
-      socket.emit("nuevaOrden", siguienteNumero);
-      setNextNumber((prev) => prev + 1);
-      console.log("socket", socket);
-      // navigate("/payment/mostrador");
-    }
+    navigate(path);
   };
 
   const handleBack = () => {
@@ -56,14 +47,14 @@ const PaymentOptionsPage = () => {
       <div className="flex mt-20 gap-8 px-4">
         <div
           className="bg-white px-8 py-20 rounded-3xl shadow-lg flex flex-col items-center justify-center gap-8 cursor-pointer hover:shadow-xl transition min-w-[20rem]  max-w-[20rem]"
-          onClick={() => handlePaymentOption("totem")}
+          onClick={() => handlePaymentOption("/payment-methods")}
         >
           <img src="/totem-1.png" alt="" className="w-52" />
           <h3 className="font-magical text-3xl text-stone-800">En tótem</h3>
         </div>
         <div
           className="bg-white px-8 py-20 rounded-3xl shadow-lg flex flex-col items-center justify-center gap-8 cursor-pointer hover:shadow-xl transition min-w-[20rem]  max-w-[20rem]"
-          onClick={() => handlePaymentOption("mostrador")}
+          onClick={() => handlePaymentOption("/counter")}
         >
           <img src="/mostrador-1.png" alt="" className="w-72" />
           <h3 className="font-magical text-3xl text-stone-800">En mostrador</h3>

@@ -13,7 +13,7 @@ app.use(
   })
 );
 
-// Configurar CORS para Socket.IO
+// Instancia de Socket.IO con CORS configurado
 const io = new Server(server, {
   cors: {
     origin: "http://localhost:5173", // Permitir el origen de Vite
@@ -21,41 +21,79 @@ const io = new Server(server, {
   },
 });
 
-// Ruta simple para comprobar que el servidor funciona
-app.get("/", (req, res) => {
-  res.send("Servidor funcionando");
-});
+// Inicializar listas de órdenes
+let numeroActual = 1;
+let ordenes = []; // En preparación
+let ordenesPendientesDeCobro = []; // Para cobrar
+let ordenesParaRetirar = []; // Para retirar
 
-// Almacenar el número de orden actual
-let ordenes = [];
-
-// Configurar evento de conexión de clientes a Socket.IO
 io.on("connection", (socket) => {
-  //   console.log("Un cliente se ha conectado");
-
+  // Enviar listas actualizadas al conectarse
   socket.emit("nuevaListaOrdenes", ordenes);
+  socket.emit("nuevaListaOrdenesPendientesDeCobro", ordenesPendientesDeCobro);
+  socket.emit("nuevaListaOrdenesParaRetirar", ordenesParaRetirar);
 
-  // Escuchar el evento 'nuevaOrden' del cliente
-  socket.on("nuevaOrden", (numeroOrden) => {
-    console.log("numeroOrden:", numeroOrden);
-    ordenes.push(numeroOrden);
-    // Enviar el nuevo número de orden a todos los clientes conectados
-    io.emit("nuevaListaOrdenes", ordenes);
-    console.log("Lista de ordenes actualizada:", ordenes);
+  // Evento para crear una nueva orden pendiente de cobro
+  socket.on("nuevaOrdenACobrar", () => {
+    const nuevoNumeroOrden = `A${numeroActual}`;
+    numeroActual += 1; // Incrementar el número de orden
+
+    ordenesPendientesDeCobro.push(nuevoNumeroOrden); // Añadir a la lista de pendientes de cobro
+    io.emit("nuevaListaOrdenesPendientesDeCobro", ordenesPendientesDeCobro); // Emitir lista actualizada
+
+    console.log(
+      `Nueva orden ${nuevoNumeroOrden} añadida a pendientes de cobro`
+    );
   });
 
-  socket.on("callNextOrder", (nextOrderCalled) => {
-    console.log("nextOrderCalled:", nextOrderCalled);
-    ordenes = ordenes.filter((o) => o !== nextOrderCalled);
-    // Enviar el nuevo número de orden a todos los clientes conectados
+  // Evento para crear una nueva orden directamente en preparación
+  socket.on("ordenCobrada", () => {
+    const nuevoNumeroOrden = `A${numeroActual}`;
+    numeroActual += 1; // Incrementar el número de orden
+
+    ordenes.push(nuevoNumeroOrden); // Añadir a la lista de "en preparación"
+    io.emit("nuevaListaOrdenes", ordenes); // Emitir lista actualizada
+
+    console.log(`Nueva orden ${nuevoNumeroOrden} añadida a en preparación`);
+  });
+
+  // Transición de "pendientes de cobro" a "en preparación"
+  socket.on("moverACobrado", (numeroOrden) => {
+    ordenesPendientesDeCobro = ordenesPendientesDeCobro.filter(
+      (o) => o !== numeroOrden
+    );
+    ordenes.push(numeroOrden); // Mover a la lista de "en preparación"
+
     io.emit("nuevaListaOrdenes", ordenes);
-    io.emit("nuevaOrdenLLamada", nextOrderCalled);
-    //   console.log("Lista de ordenes actualizada:", ordenes);
+    io.emit("nuevaListaOrdenesPendientesDeCobro", ordenesPendientesDeCobro);
+
+    console.log(
+      `Orden ${numeroOrden} movida de pendiente de cobro a en preparación`
+    );
+  });
+
+  // Transición de "en preparación" a "para retirar"
+  socket.on("moverAParaRetirar", (numeroOrden) => {
+    ordenes = ordenes.filter((o) => o !== numeroOrden);
+    ordenesParaRetirar.push(numeroOrden); // Mover a la lista de "para retirar"
+
+    io.emit("nuevaListaOrdenes", ordenes);
+    io.emit("nuevaListaOrdenesParaRetirar", ordenesParaRetirar);
+
+    console.log(`Orden ${numeroOrden} movida de en preparación a para retirar`);
+  });
+
+  // Eliminar orden de "para retirar" (último estado)
+  socket.on("eliminarOrden", (numeroOrden) => {
+    ordenesParaRetirar = ordenesParaRetirar.filter((o) => o !== numeroOrden);
+
+    io.emit("nuevaListaOrdenesParaRetirar", ordenesParaRetirar);
+    console.log(`Orden ${numeroOrden} eliminada (retirada)`);
   });
 
   // Desconexión de clientes
   socket.on("disconnect", () => {
-    // console.log("Un cliente se ha desconectado");
+    console.log("Un cliente se ha desconectado");
   });
 });
 

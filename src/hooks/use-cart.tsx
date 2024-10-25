@@ -56,8 +56,11 @@ const useCart = create(
         }
       },
       removeAll: () => {
-        set({ items: [] });
-        toast.success("Carrito vaciado");
+        const currentItems = get().items;
+        if (currentItems.length > 0) {
+          set({ items: [] });
+          toast.success("Carrito vaciado");
+        }
       },
     }),
     {
