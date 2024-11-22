@@ -1,10 +1,10 @@
-import useCart from "@/hooks/use-cart";
-import useNextOrder from "@/hooks/useNextOrder";
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import useCart from '@/hooks/use-cart';
+import useNextOrder from '@/hooks/useNextOrder';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Counter = () => {
-  const { nextNumberFunction } = useNextOrder("nuevaOrdenACobrar");
+  const { nextNumberFunction } = useNextOrder('nuevaOrdenACobrar');
   const navigate = useNavigate();
   const { removeAll } = useCart();
   const hasEmitted = useRef(false);
@@ -22,8 +22,8 @@ const Counter = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigate("/");
-    }, 3000);
+      navigate('/');
+    }, 30000);
 
     return () => clearTimeout(timeout);
   }, [navigate]);
@@ -35,8 +35,12 @@ const Counter = () => {
       </h1>
       <h2 className="text-2xl text-stone-800 max-w-xl text-center">
         El cajero ya tiene tu orden para que puedas pagarla en la caja, arrimate
-        por favor
+        por favor.
       </h2>
+      <h2 className="text-2xl text-stone-800 max-w-xl text-center">
+        También escaneá éste qr:
+      </h2>
+      <img src="/qr.png" alt="QR" />
     </div>
   );
 };

@@ -1,10 +1,10 @@
-import useCart from "@/hooks/use-cart";
-import useNextOrder from "@/hooks/useNextOrder";
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import useCart from '@/hooks/use-cart';
+import useNextOrder from '@/hooks/useNextOrder';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Finisher = () => {
-  const { nextNumberFunction } = useNextOrder("ordenCobrada");
+  const { nextNumberFunction } = useNextOrder('ordenCobrada');
   const navigate = useNavigate();
   const { removeAll } = useCart();
   const hasEmitted = useRef(false);
@@ -22,8 +22,8 @@ const Finisher = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigate("/");
-    }, 3000);
+      navigate('/');
+    }, 30000);
 
     return () => clearTimeout(timeout);
   }, [navigate]);
@@ -34,8 +34,13 @@ const Finisher = () => {
         Pago finalizado!
       </h1>
       <h2 className="text-2xl text-stone-800 max-w-xl text-center">
-        Retirá el ticket impreso y en el visor podrás ver el avance de tu pedido
+        Retirá el ticket impreso y en el visor podrás ver el avance de tu
+        pedido.
       </h2>
+      <h2 className="text-2xl text-stone-800 max-w-xl text-center">
+        También escaneá éste qr:
+      </h2>
+      <img src="/qr.png" alt="QR" />
     </div>
   );
 };
